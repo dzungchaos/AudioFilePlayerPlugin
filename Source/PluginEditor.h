@@ -29,5 +29,13 @@ private:
     // access the processor object that created it.
     AudioFilePlayerPluginAudioProcessor& audioProcessor;
 
+    juce::TextButton openButton;
+    juce::TextButton playButton;
+    juce::TextButton stopButton;
+
+    void openButtonClick();
+    void playButtonClick();
+    void stopButtonClick();
+
     JUCE_DECLARE_NON_COPYABLE_WITH_LEAK_DETECTOR (AudioFilePlayerPluginAudioProcessorEditor)
 };
