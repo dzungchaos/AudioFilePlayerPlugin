@@ -32,14 +32,15 @@ private:
     juce::TextButton openButton;
     juce::TextButton playButton;
     juce::TextButton stopButton;
+    juce::Rectangle<int> playList;
 
-    juce::File audioFile;
+    juce::Array<juce::File> audioSources;
 
     void openButtonClick();
     void playButtonClick();
     void stopButtonClick();
 
-    void addAudioFile(juce::File& file);
+    void addAudioFile();
 
     JUCE_DECLARE_NON_COPYABLE_WITH_LEAK_DETECTOR (AudioFilePlayerPluginAudioProcessorEditor)
 };
