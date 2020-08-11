@@ -13,9 +13,18 @@
 //==============================================================================
 /**
 */
-class AudioFilePlayerPluginAudioProcessor  : public juce::AudioProcessor
+class AudioFilePlayerPluginAudioProcessor  : public juce::AudioProcessor, public juce::ChangeListener
 {
 public:
+
+    enum TransportState
+    {
+        Stopped,
+        Starting,
+        Playing,
+        Stopping
+    };
+
     //==============================================================================
     AudioFilePlayerPluginAudioProcessor();
     ~AudioFilePlayerPluginAudioProcessor() override;
@@ -52,8 +61,16 @@ public:
     //==============================================================================
     void getStateInformation (juce::MemoryBlock& destData) override;
     void setStateInformation (const void* data, int sizeInBytes) override;
+    void changeState(TransportState newState);
 
 private:
     //==============================================================================
-    JUCE_DECLARE_NON_COPYABLE_WITH_LEAK_DETECTOR (AudioFilePlayerPluginAudioProcessor)
+    JUCE_DECLARE_NON_COPYABLE_WITH_LEAK_DETECTOR(AudioFilePlayerPluginAudioProcessor)
+
+    juce::AudioFormatManager formatManager;
+    std::unique_ptr<juce::AudioFormatReaderSource> readerSource;
+    juce::AudioTransportSource transportSource;
+    TransportState state;
+
+    void changeListenerCallback(juce::ChangeBroadcaster* source) override;
 };

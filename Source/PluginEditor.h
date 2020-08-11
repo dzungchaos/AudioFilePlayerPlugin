@@ -32,9 +32,9 @@ private:
     juce::TextButton openButton;
     juce::TextButton playButton;
     juce::TextButton stopButton;
-    juce::Rectangle<int> playList;
+    juce::Label audioSourceLabel;
 
-    juce::Array<juce::File> audioSources;
+    juce::File audioSource;
 
     void openButtonClick();
     void playButtonClick();

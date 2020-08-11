@@ -22,6 +22,8 @@ AudioFilePlayerPluginAudioProcessor::AudioFilePlayerPluginAudioProcessor()
                        )
 #endif
 {
+    formatManager.registerBasicFormats();
+    transportSource.addChangeListener (this);
 }
 
 AudioFilePlayerPluginAudioProcessor::~AudioFilePlayerPluginAudioProcessor()
@@ -93,14 +95,12 @@ void AudioFilePlayerPluginAudioProcessor::changeProgramName (int index, const ju
 //==============================================================================
 void AudioFilePlayerPluginAudioProcessor::prepareToPlay (double sampleRate, int samplesPerBlock)
 {
-    // Use this method as the place to do any pre-playback
-    // initialisation that you need..
+    transportSource.prepareToPlay(samplesPerBlock, sampleRate);
 }
 
 void AudioFilePlayerPluginAudioProcessor::releaseResources()
 {
-    // When playback stops, you can use this as an opportunity to free up any
-    // spare memory, etc.
+    transportSource.releaseResources();
 }
 
 #ifndef JucePlugin_PreferredChannelConfigurations
@@ -179,6 +179,44 @@ void AudioFilePlayerPluginAudioProcessor::setStateInformation (const void* data,
 {
     // You should use this method to restore your parameters from this memory block,
     // whose contents will have been created by the getStateInformation() call.
+}
+
+void AudioFilePlayerPluginAudioProcessor::changeState(TransportState newState)
+{
+    if (state != newState)
+    {
+        state = newState;
+        switch (state)
+        {
+            case Stopped:
+                transportSource.setPosition(0.0);
+                break;
+            case Starting:
+                transportSource.start();
+                break;
+            case Playing:
+                break;
+            case Stopping:
+                transportSource.stop();
+                break;
+        }
+    }
+}
+
+void AudioFilePlayerPluginAudioProcessor::changeListenerCallback(juce::ChangeBroadcaster* source)
+{
+    if (source == &transportSource)
+    {
+        if (transportSource.isPlaying())
+        {
+            changeState(Playing);
+        }
+        else
+        {
+            changeState(Stopped);
+        }
+
+    }
 }
 
 //==============================================================================
