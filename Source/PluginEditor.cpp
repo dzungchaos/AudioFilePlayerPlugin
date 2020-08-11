@@ -85,7 +85,7 @@ void AudioFilePlayerPluginAudioProcessorEditor::stopButtonClick()
 
 void AudioFilePlayerPluginAudioProcessorEditor::addAudioFile()
 {
-    juce::FileChooser chooser("Select audio file...", {}, "*.wav; *.mp3; *.aiff; *.aiff");
+    juce::FileChooser chooser("Select audio file...", {}, "*.wav; *.mp3; *.aif; *.aiff");
     if (chooser.browseForFileToOpen())
     {
         audioSource = chooser.getResult();
