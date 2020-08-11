@@ -2,7 +2,10 @@
 
 <JUCERPROJECT id="cXROLA" name="AudioFilePlayerPlugin" projectType="audioplug"
               useAppConfig="0" addUsingNamespaceToJuceHeader="0" displaySplashScreen="1"
-              jucerFormatVersion="1">
+              jucerFormatVersion="1" companyName="Spyced Concepts" companyCopyright="Spyced Concepts"
+              companyWebsite="http://spycedconcepts.uk" companyEmail="info@spycedconcepts.uk"
+              pluginName="Audio File Player Plugin" pluginDesc="Juce 6 Audio File Player Plugin for Audio Plugin Host testing"
+              pluginVST3Category="Tools">
   <MAINGROUP id="Xe5wV8" name="AudioFilePlayerPlugin">
     <GROUP id="{5D4E0E01-0348-A1BF-0A65-91F7BFC0DDF1}" name="Source">
       <FILE id="a2TzVB" name="PluginProcessor.cpp" compile="1" resource="0"
