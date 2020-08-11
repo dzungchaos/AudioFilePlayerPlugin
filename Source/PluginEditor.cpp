@@ -85,11 +85,12 @@ void AudioFilePlayerPluginAudioProcessorEditor::stopButtonClick()
 
 void AudioFilePlayerPluginAudioProcessorEditor::addAudioFile()
 {
-    juce::FileChooser chooser("Select audio file...", {}, "*.wav; *.mp3; *.aac");
+    juce::FileChooser chooser("Select audio file...", {}, "*.wav; *.mp3; *.aiff; *.aiff");
     if (chooser.browseForFileToOpen())
     {
         audioSource = chooser.getResult();
-        juce::String labelText = "Now Playing:  " + audioSource.getFileName();
+        audioProcessor.loadFile(audioSource);
+        juce::String labelText = "Audio File Loaded:  " + audioSource.getFileName();
         audioSourceLabel.setText(labelText, juce::NotificationType::dontSendNotification);
     }
 }

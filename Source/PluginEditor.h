@@ -34,6 +34,8 @@ private:
     juce::TextButton stopButton;
     juce::Label audioSourceLabel;
 
+    //Debugging only
+    
     juce::File audioSource;
 
     void openButtonClick();
