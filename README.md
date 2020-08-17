@@ -47,7 +47,7 @@ After that, play and stop to your hearts content.  Stopping playback will reset 
 ##  Known Issues
 
 1.  There is an inconsistent glitch with the playback of *.aif files which, at this point, has yet to be resolved.
-2.  No Mac/Linux friendly version available yet.
+2.  No Mac/Linux friendly build available yet.  You should be able to clone this repo and create a build to suit your environment using Projucer, though.
 
 ## Roadmap (in no particular order)
 
@@ -55,6 +55,6 @@ After that, play and stop to your hearts content.  Stopping playback will reset 
 - Add mutiple file "playlist" functionality.
 - Add "drag and drop" for audio files,
 - Add pause/reset/loop functionality.
-- Mac version.
-- Linux version.
+- Mac build.
+- Linux build.
 
